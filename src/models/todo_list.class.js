@@ -14,10 +14,19 @@ export class ToDoList {
     }
 
     removeToDo( id ){
-        this.todos.pop(id);
+        this.todos = this.todos.filter( (toDo) => toDo.id != id);
     }
 
     markAsCompleted( id ){
+
+        this.todos.forEach( (toDo) => {
+
+            if(toDo.id == id){
+                toDo.completed = !toDo.completed;
+                return;
+            }
+
+        });
 
     }
 

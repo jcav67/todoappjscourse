@@ -44,3 +44,22 @@ inputNewTask.addEventListener('keyup', (keyupEvent) =>{
 
     }
 });
+
+divTodoList.addEventListener('click', (clickEvent) =>{
+
+    const elementName = clickEvent.target.localName;
+    const todoElement = clickEvent.target.parentElement.parentElement;
+    const todoId = todoElement.dataset.id;
+    
+    if( elementName.includes('input')){
+
+        todoList.markAsCompleted(todoId);
+        todoElement.classList.toggle('completed');
+    }
+    else if(elementName.includes('button')){
+
+        todoList.removeToDo(todoId);
+        divTodoList.removeChild(todoElement);
+    }
+    console.log(todoList);
+});
