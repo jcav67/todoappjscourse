@@ -5,8 +5,7 @@ import './styles.css';
 
 
 export const todoList = new ToDoList();
-const task = new ToDo('aprender Javascript');
-//task.completed = true;
-todoList.createToDo(task)
 
-crearTodoHtml(task)
+// todoList.toDos.forEach( (toDo) => crearTodoHtml(toDo)); completo
+//corto
+todoList.toDos.forEach(crearTodoHtml);
