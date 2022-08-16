@@ -5,12 +5,13 @@ import {todoList} from '../index'
 
 const divTodoList = document.querySelector('.todo-list');
 const inputNewTask = document.querySelector('.new-todo');
+const btnCompleted = document.querySelector('.clear-completed');
 
 
 
 
 export const crearTodoHtml = (todo) => {
-    console.log(todo);
+    
   const htmlTodo = `
     <li class="${ (todo.completed) ? 'completed':'' }" data-id="${todo.id}">
         <div class="view">
@@ -61,5 +62,19 @@ divTodoList.addEventListener('click', (clickEvent) =>{
         todoList.removeToDo(todoId);
         divTodoList.removeChild(todoElement);
     }
-    console.log(todoList);
+    
 });
+
+btnCompleted.addEventListener('click', ()=>{
+ 
+    todoList.deleteCompleted();
+    console.log(todoList);
+    for( let i = divTodoList.children.length-1; i >= 0; i--){
+
+        const element= divTodoList.children[i];
+
+       if( element.classList.contains('completed')){
+        divTodoList.removeChild(element);
+       }
+    }
+})

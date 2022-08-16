@@ -8,5 +8,5 @@ export const todoList = new ToDoList();
 const task = new ToDo('aprender Javascript');
 //task.completed = true;
 todoList.createToDo(task)
-console.log(todoList);
+
 crearTodoHtml(task)
