@@ -3,9 +3,11 @@ import {ToDo} from '../models/todo.class';
 import {todoList} from '../index'
 //HTML references
 
-const divTodoList = document.querySelector('.todo-list');
-const inputNewTask = document.querySelector('.new-todo');
-const btnCompleted = document.querySelector('.clear-completed');
+const divTodoList   = document.querySelector('.todo-list');
+const inputNewTask  = document.querySelector('.new-todo');
+const btnCompleted  = document.querySelector('.clear-completed');
+const ulFilters     = document.querySelector('.filters');
+const anchorFilters = document.querySelectorAll('.filtrer');
 
 
 
@@ -77,4 +79,34 @@ btnCompleted.addEventListener('click', ()=>{
         divTodoList.removeChild(element);
        }
     }
-})
+});
+
+ulFilters.addEventListener('click', (ulClick) =>{
+    
+    const filter = ulClick.target.text;
+    if( !filter) {return;}
+    
+    anchorFilters.forEach( elem => elem.classList.remove('selected'));
+    ulClick.target.classList.add('selected');
+
+    for( const element of divTodoList.children){
+        element.classList.remove('hidden');
+        const completedStatus = element.classList.contains('completed');
+        
+        switch(filter){
+
+            case 'Pendientes':
+                
+                if( completedStatus ){
+                    element.classList.add('hidden');
+                }
+                break;
+
+            case 'Completados':
+                if( !completedStatus ){
+                    element.classList.add('hidden');
+                }
+                break;
+        }
+    }
+});
